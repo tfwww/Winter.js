@@ -5,6 +5,14 @@ var log = function() {
     console.log.apply(console, arguments)
 }
 
+// 监听点击按钮获取不同页面的数据
+var bindClickEvent =function() {
+    var pagerDivEle = document.querySelector('.pager')
+    pagerDivEle.addEventListener('click', function(event) {
+        log('click target', event.target)
+    })
+}
+
 var btnContainer = function() {
     var bodyEle = document.querySelector('body')
     bodyEle.insertAdjacentHTML('beforeEnd', '<div class="pager"></div>')
@@ -29,6 +37,7 @@ var insertBtns = function(data) {
 var __main = function() {
     btnContainer()
     insertBtns(data)
+    bindClickEvent()
 }
 
 __main()
