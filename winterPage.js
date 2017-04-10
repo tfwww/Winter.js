@@ -1,11 +1,23 @@
-// 假设后端传的数据是这样的
-var data = [1, 2, 3, 4, 5, 6]
-
-var winterPage = {}
 var log = function() {
     console.log.apply(console, arguments)
 }
 
+var Page = function() {
+
+}
+
+var winterPage = function(options) {
+    log('ab', options)
+    new Page(options)
+}
+
+// 有多少页
+Page.prototype.makePageBtns = function(pagesData) {
+    log('pagesData', pagesData)
+    for (let i = 0; i < data.length; i++) {
+        insertTpl('.pager', btnTpl(pagesData[i]))
+    }
+}
 // 监听点击按钮获取不同页面的数据
 var bindClickEvent =function() {
     var pagerDivEle = document.querySelector('.pager')
@@ -29,16 +41,16 @@ var insertTpl = function(selStr, tpl) {
     ele.insertAdjacentHTML('beforeEnd', tpl)
 }
 
-var insertBtns = function(data) {
-    for (let i = 0; i < data.length; i++) {
-        insertTpl('.pager', btnTpl(data[i]))
-    }
-}
-
-var __main = function() {
-    btnContainer()
-    insertBtns(data)
-    bindClickEvent()
-}
-
-__main()
+// var insertBtns = function(data) {
+//     for (let i = 0; i < data.length; i++) {
+//         insertTpl('.pager', btnTpl(data[i]))
+//     }
+// }
+//
+// var __main = function() {
+//     btnContainer()
+//     // insertBtns(data)
+//     bindClickEvent()
+// }
+//
+// __main()
