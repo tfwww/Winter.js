@@ -44,9 +44,10 @@ var insertTpl = function(selStr, tpl) {
 function Page(pages) {
     this.pages = pages
     this.makePageBtns = function(pages) {
+        btnContainer()
         log('abc', pages)
-        for (var i = 0; i < data.length; i++) {
-            insertTpl('.pager', btnTpl(pagesData[i]))
+        for (var i = 0; i < pages.length; i++) {
+            insertTpl('.pager', btnTpl(pages[i]))
         }
     }
 }
