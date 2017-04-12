@@ -8,16 +8,16 @@ var Page = function() {
 
 var winterPage = function(options) {
     log('ab', options)
-    new Page(options)
+    // new Page(options)
 }
 
 // 有多少页
-Page.prototype.makePageBtns = function(pagesData) {
-    log('pagesData', pagesData)
-    for (let i = 0; i < data.length; i++) {
-        insertTpl('.pager', btnTpl(pagesData[i]))
-    }
-}
+// Page.prototype.makePageBtns = function(pagesData) {
+//     log('pagesData', pagesData)
+//     for (let i = 0; i < data.length; i++) {
+//         insertTpl('.pager', btnTpl(pagesData[i]))
+//     }
+// }
 // 监听点击按钮获取不同页面的数据
 var bindClickEvent =function() {
     var pagerDivEle = document.querySelector('.pager')
@@ -41,6 +41,15 @@ var insertTpl = function(selStr, tpl) {
     ele.insertAdjacentHTML('beforeEnd', tpl)
 }
 
+function Page(pages) {
+    this.pages = pages
+    this.makePageBtns = function(pages) {
+        log('abc', pages)
+        for (var i = 0; i < data.length; i++) {
+            insertTpl('.pager', btnTpl(pagesData[i]))
+        }
+    }
+}
 // var insertBtns = function(data) {
 //     for (let i = 0; i < data.length; i++) {
 //         insertTpl('.pager', btnTpl(data[i]))
