@@ -7,8 +7,24 @@
     </head>
     <body>
         <script>
+
+        function Page(pages) {
+            var o = new Object()
+            o.pages = pages
+            o.makePageBtns = function(pages) {
+                btnContainer()
+                log('abc', pages)
+                for (var i = 0; i < pages.length; i++) {
+                    insertTpl('.pager', btnTpl(pages[i]))
+                }
+            }
+            return o
+        }
+            var data = [1, 2, 3, 4]
             var page1 = new Page()
-            log('page1', page1)
+            // page1.makePageBtns(data)
+            // log('page1', page1)
         </script>
     </body>
 </html>
+s
