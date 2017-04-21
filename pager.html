@@ -2,29 +2,10 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <script src="winterPage.js"></script>
         <title>pager</title>
     </head>
     <body>
-        <script>
-
-        function Page(pages) {
-            var o = new Object()
-            o.pages = pages
-            o.makePageBtns = function(pages) {
-                btnContainer()
-                log('abc', pages)
-                for (var i = 0; i < pages.length; i++) {
-                    insertTpl('.pager', btnTpl(pages[i]))
-                }
-            }
-            return o
-        }
-            var data = [1, 2, 3, 4]
-            var page1 = new Page()
-            // page1.makePageBtns(data)
-            // log('page1', page1)
-        </script>
+        <script src="data.js"></script>
+        <script src="pager.js"></script>
     </body>
 </html>
-s
