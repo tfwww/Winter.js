@@ -37,27 +37,28 @@ var insertBtns = function(data) {
 }
 
 function Page(dataArray) {
-    var o = new Object()
-    // 一页显示 10 行
-    o.row = 10
-    this.btnContainer = function() {
+
+}
+
+Page.prototype = {
+    constructor: Page,
+    btnContainer: function() {
         var bodyEle = document.querySelector('body')
         bodyEle.insertAdjacentHTML('beforeEnd', '<div class="pager"></div>')
-    }
-
-    o.makePageBtns = function(){
-        insertBtns(data)
-        for (var i = 0; i < pages.length; i++) {
-            insertTpl('.pager', btnTpl(pages[i]))
+    },
+    makePageBtns: function() {
+        for (var i = 0; i < data.length; i++) {
+            insertTpl('.pager', btnTpl(i + 1))
         }
-    };
-    return o;
+    }
 }
 
 var __main = function() {
     var page = new Page()
     page.btnContainer()
+    page.makePageBtns(data)
     // bindClickEvent()
+    log('page', page)
     log('sourceData', sourceData.data.list)
 }
 
