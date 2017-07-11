@@ -1,63 +1,57 @@
-//测试数据
-var data = [
-    '北京',
-    '上海',
-    '广州',
-    '深圳',
-    '杭州',
-    '长沙',
-    '合肥',
-    '宁夏',
-    '成都',
-    '西安',
-    '南昌',
-    '上饶',
-    '沈阳',
-    '济南',
-    '厦门',
-    '福州',
-    '九江',
-    '宜春',
-    '赣州',
-    '宁波',
-    '绍兴',
-    '无锡',
-    '苏州',
-    '徐州',
-    '东莞',
-    '佛山',
-    '中山',
-    '成都',
-    '武汉',
-    '青岛',
-    '天津',
-    '重庆',
-    '南京',
-    '九江',
-    '香港',
-    '澳门',
-    '台北'
-];
+function winterpage(settings) {
+    new Page(settings)
+}
 
-var nums = 5; //每页出现的数量
-var pages = Math.ceil(data.length/nums); //得到总页数
+var Page = function(settings) {
+    var that = this
+    that.config = settings || {}
+    var config = that.config
+    that.render()
+}
 
-var thisDate = function(curr){
-    //此处只是演示，实际场景通常是返回已经当前页已经分组好的数据
-    var str = '', last = curr*nums - 1;
-    last = last >= data.length ? (data.length-1) : last;
-    for(var i = (curr*nums - nums); i <= last; i++){
-        str += '<li>'+ data[i] +'</li>';
+// 渲染分页
+Page.prototype.render = function(load) {
+    var that = this
+    var conf = that.config
+    var view = that.view()
+}
+
+// 分页视图
+Page.prototype.view = function(){
+    var that = this
+    var conf = that.config
+    var view = []
+
+    conf.curr = conf.curr || 1
+    conf.groups = 'groups' in conf ? conf.groups : 5
+    conf.first = 'first' in conf ? conf.first : 1
+    conf.last = 'last' in conf ? conf.last : '尾页'
+    conf.prev = 'prev' in conf ? conf.prev : '上一页'
+    conf.next = 'next' in conf ? conf.next : '下一页'
+
+    // 页码组件容器
+    for (var i = 1; i <= conf.pages; i++) {
+        var tpl = pageTpl(i)
+        insertTpl(conf.cont, tpl)
     }
-    return str;
-};
 
-//调用分页
-laypage({
-    cont: 'biuuu_city',
-    pages: pages,
-    jump: function(obj){
-        document.getElementById('biuuu_city_list').innerHTML = thisDate(obj.curr);
+}
 
-    }
-})
+//  插入 html 元素，container 为选择器，如 '#xxx', tpl 元素表情段
+function insertTpl(container, tpl) {
+    var ctnEle = document.querySelector(container)
+    ctnEle.insertAdjacentHTML('beforeEnd', tpl)
+}
+// 辅助函数
+function pageTpl(index) {
+    return `<a href="javascript:;">${index}</a>`
+}
+
+function dotTpl() {
+    return '<span>…</span>'
+}
+
+// 为了方便以后注释掉 log 语句
+function log() {
+    console.log.apply(console, arguments);
+}
